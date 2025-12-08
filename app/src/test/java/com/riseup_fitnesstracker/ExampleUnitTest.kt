@@ -1,4 +1,4 @@
-package com.fitnesstracker
+package com.riseup_fitnesstracker
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.fitnesstracker
+package com.riseup_fitnesstracker
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,10 +8,11 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.fitnesstracker.ui.SplashScreen
-import com.fitnesstracker.ui.login.LoginScreen
-import com.fitnesstracker.ui.signup.SignUpScreen
-import com.fitnesstracker.ui.theme.FitnessTrackerTheme
+import com.riseup_fitnesstracker.ui.SplashScreen
+import com.riseup_fitnesstracker.ui.home.HomeScreen
+import com.riseup_fitnesstracker.ui.login.LoginScreen
+import com.riseup_fitnesstracker.ui.signup.SignUpScreen
+import com.riseup_fitnesstracker.ui.theme.FitnessTrackerTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
             FitnessTrackerTheme {
                 FitnessTrackerApp()
             }
-        }   
+        }
     }
 }
 
@@ -37,6 +38,10 @@ fun FitnessTrackerApp() {
         }
         composable("signup") {
             SignUpScreen(navController = navController)
+        }
+        composable("home/{username}") { backStackEntry ->
+            val username = backStackEntry.arguments?.getString("username") ?: ""
+            HomeScreen(username = username)
         }
     }
 }
